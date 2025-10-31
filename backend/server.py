@@ -95,7 +95,7 @@ async def validate_key(payload: KeyPayload):
     try:
         is_valid = payload.key == APP_KEY
         return {"valid": is_valid}
-    except Exception as e:
+    except Exception:
         logging.exception("Key validation error")
         raise HTTPException(status_code=500, detail="Internal error during key validation")
 
