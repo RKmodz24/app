@@ -102,14 +102,9 @@ async def validate_key(payload: KeyPayload):
 
 @api_router.get("/special")
 async def special_status():
-    # The special function is considered active when APP_KEY == "123456"
-    # Update rule: change APP_KEY constant to adjust behavior
-    message = (
-        "Special function ACTIVE (APP_KEY is '123456')."
-        if SPECIAL_FUNCTION_ACTIVE
-        else "Special function INACTIVE (APP_KEY is not '123456')."
-    )
-    return {"active": SPECIAL_FUNCTION_ACTIVE, "message": message}
+    # SPECIAL function is considered active when the provided key matches SPECIAL_TRIGGER_KEY
+    # Default: since APP_KEY is "123456", SPECIAL_TRIGGER_KEY will be "123456"
+    return {"trigger_key": SPECIAL_TRIGGER_KEY, "hint": "Update APP_KEY in server.py to change trigger."}
 
 
 # Include the router in the main app
