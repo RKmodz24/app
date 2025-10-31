@@ -102,9 +102,11 @@ async def validate_key(payload: KeyPayload):
 
 @api_router.get("/special")
 async def special_status():
-    # SPECIAL function is considered active when the provided key matches SPECIAL_TRIGGER_KEY
-    # Default: since APP_KEY is "123456", SPECIAL_TRIGGER_KEY will be "123456"
-    return {"trigger_key": SPECIAL_TRIGGER_KEY, "hint": "Update APP_KEY in server.py to change trigger."}
+    # SPECIAL function activation rule: send your key to POST /api/special/activate
+    return {
+        "activation_rule": "POST /api/special/activate with JSON { key: string }",
+        "note": "Activation succeeds only when provided key matches the configured APP_KEY.",
+    }
 
 
 @api_router.post("/special/activate")
