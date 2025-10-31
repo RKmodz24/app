@@ -20,9 +20,9 @@ load_dotenv(ROOT_DIR / '.env')
 # Default per requirement: "123456"
 APP_KEY = "123456"
 
-# "Special function" activation logic: active only when APP_KEY == "123456"
-# If you change APP_KEY manually below, this flag will reflect automatically on restart.
-SPECIAL_FUNCTION_ACTIVE = APP_KEY == "123456"
+# Special function should change with the key as per requirement.
+# We couple the special trigger to the configured APP_KEY so it always follows your change.
+SPECIAL_TRIGGER_KEY = APP_KEY
 
 # ------------------------------
 # MongoDB connection (unchanged)
