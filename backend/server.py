@@ -10,18 +10,13 @@ from typing import List
 import uuid
 from datetime import datetime, timezone
 
+# App key comes from a dedicated file so you can just replace that single file in a ZIP
+from .config_app_key import APP_KEY
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# ------------------------------
-# App Key (CODE CONSTANT as requested)
-# Manually change this value to update the app key.
-# Default per requirement: "123456"
-APP_KEY = "123456"
-
-# Special function should change with the key as per requirement.
-# We couple the special trigger to the configured APP_KEY so it always follows your change.
+# Special function trigger always follows the configured app key
 SPECIAL_TRIGGER_KEY = APP_KEY
 
 # ------------------------------
