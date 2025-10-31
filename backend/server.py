@@ -107,6 +107,19 @@ async def special_status():
     return {"trigger_key": SPECIAL_TRIGGER_KEY, "hint": "Update APP_KEY in server.py to change trigger."}
 
 
+@api_router.post("/special/activate")
+async def special_activate(payload: KeyPayload):
+    try:
+        is_active = payload.key == SPECIAL_TRIGGER_KEY
+        message = (
+            "Special function ACTIVATED" if is_active else "Special function NOT activated"
+        )
+        return {"active": is_active, "message": message}
+    except Exception:
+        logging.exception("Special activate error")
+        raise HTTPException(status_code=500, detail="Internal error during special activation")
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
